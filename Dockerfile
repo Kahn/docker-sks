@@ -2,7 +2,17 @@ FROM ubuntu:trusty
 
 MAINTAINER swilsonau@gmail.com
 
-RUN apt-get update && apt-get -y install gcc ocaml libdb6.0-dev gnupg nginx wget curl patch make
+RUN apt-get -y update
+RUN apt-get -y install gcc
+RUN apt-get -y install ocaml
+RUN apt-get -y install libdb6.0-dev
+RUN apt-get -y install gnupg
+RUN apt-get -y install nginx
+RUN apt-get -y install wget
+RUN apt-get -y install curl
+RUN apt-get -y install patch
+RUN apt-get -y install make
+RUN apt-get -y install zlib1g-dev
 
 RUN gpg --keyserver hkp://pool.sks-keyservers.net --trust-model always --recv-key 0x41259773973A612A
 RUN wget https://bitbucket.org/skskeyserver/sks-keyserver/downloads/sks-1.1.5.tgz && wget  https://bitbucket.org/skskeyserver/sks-keyserver/downloads/sks-1.1.5.tgz.asc
