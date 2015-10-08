@@ -1,0 +1,20 @@
+# /var/lib/sks/sksconf
+
+debuglevel: 3
+
+# Set the hostname of your server
+hostname:                       --keyserver-hostname--
+
+hkp_address:                    127.0.0.1
+hkp_port:                       11372
+recon_port:                     11370
+
+# Set the PGP ID for the Server Contact
+server_contact:                 --contact-pgp-id--
+
+initial_stat:
+disable_mailsync:
+membership_reload_interval:     1
+stat_hour:                      12
+
+max_matches:                    500
