@@ -3,14 +3,14 @@
 debuglevel: 3
 
 # Set the hostname of your server
-hostname:                       --keyserver-hostname--
+hostname:                       hostname
 
 hkp_address:                    127.0.0.1
 hkp_port:                       11372
 recon_port:                     11370
 
 # Set the PGP ID for the Server Contact
-server_contact:                 --contact-pgp-id--
+server_contact:                 316D96016E03FC34
 
 initial_stat:
 disable_mailsync:
