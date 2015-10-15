@@ -13,7 +13,9 @@ RUN apt-get -y update && apt-get -y install \
     patch \
     make \
     zlib1g-dev \
-    supervisor
+    supervisor \
+    cron \
+    ntp
 
 RUN mkdir -p /var/log/supervisor
 
@@ -33,14 +35,23 @@ RUN cd sks-1.1.5 && \
 RUN curl -Ls https://github.com/mattrude/pgpkeyserver-lite/tarball/master -o pgpkeyserver-lite.tgz
 RUN mkdir -p /var/www/html && tar -xzf pgpkeyserver-lite.tgz --directory /var/www/html --strip 1
 
-# TODO: Get dump content
 RUN ln -s /usr/local/bin/sks /usr/sbin/
 
 COPY files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 COPY files/sksconf /var/lib/sks/sksconf
 COPY files/nginx.conf /etc/nginx/nginx.conf
-COPY files/dump /var/lib/sks/dump
+#COPY files/dump /var/lib/sks/dump
 COPY files/membership /var/lib/sks/membership
+
+COPY files/crontab.txt /tmp/crontab.txt
+RUN crontab /tmp/crontab.txt
+RUN chmod 600 /etc/crontab
+
+# TODO: Get dump content
+RUN mkdir /var/lib/sks/dump
+WORKDIR /var/lib/sks/dump
+#RUN wget -c -r -p -e robots=off --timestamping --level=1 --cut-dirs=3 --no-host-directories http://keyserver.mattrude.com/dump/current/
+RUN md5sum -c metadata-sks-dump.txt
 
 WORKDIR /var/lib/sks/
 RUN /usr/sbin/sks build /var/lib/sks/dump/*.pgp -n 10 -cache 100

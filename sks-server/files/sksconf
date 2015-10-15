@@ -1,0 +1,19 @@
+# /var/lib/sks/sksconf
+
+debuglevel: 3
+
+# Set the hostname of your server
+hostname:                       au.sks.cycloptivity.net
+hkp_address:                    127.0.0.1
+hkp_port:                       11371
+recon_port:                     11370
+
+# Set the PGP ID for the Server Contact
+server_contact:                 316D96016E03FC34
+
+initial_stat:
+disable_mailsync:
+membership_reload_interval:     1
+stat_hour:                      12
+
+max_matches:                    500

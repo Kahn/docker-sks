@@ -1,0 +1,1 @@
+*/5 * * * * root kill 12 `supervisorctl status | grep sks_db | sed -n '/RUNNING/s/.*pid \([[:digit:]]\+\).*/\1/p'`
